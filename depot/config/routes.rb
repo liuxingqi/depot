@@ -14,16 +14,15 @@
 # We make no guarantees that this code is fit for any purpose. 
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
-Depot::Application.routes.draw do
-  get 'admin' => 'admin#index'
-
+Depot::Application.routes.draw do  get 'admin' => 'admin#index'
   controller :sessions do
     get  'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
 
-
+  resources :comments
+  
   resources :users
 
   resources :orders
@@ -37,6 +36,9 @@ Depot::Application.routes.draw do
     get :who_bought, :on => :member
   end
 
+  resources :products do
+    resources :comments
+  end
 
   # ...
   # The priority is based upon order of creation:

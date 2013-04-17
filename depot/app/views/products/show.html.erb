@@ -20,6 +20,17 @@
   <%= @product.price %>
 </p>
 
-
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+<h1>All comments</h1>
+
+<% @product.comments.each do |item| %> 
+  <p> 
+    <%= item.evaluate %></p>
+<% end %>
+
+
+<h2>Add a comment</h2>
+<%= render 'comments/form' %>
+

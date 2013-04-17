@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-
+    @user=User.find(session[:user_id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
@@ -41,10 +41,11 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(params[:product])
-
+    @comments= @product.comments.create(params[:comment])
+    
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to product_path(@product), notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
         format.html { render action: "new" }
@@ -73,6 +74,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product = Product.find(params[:id])
+    @comments= @product.comments.create(params[:id])
     @product.destroy
 
     respond_to do |format|
