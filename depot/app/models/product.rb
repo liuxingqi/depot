@@ -14,7 +14,11 @@ class Product < ActiveRecord::Base
             :message => 'must be a URL for GIF, JPG or PNG image.'
   }
   
-  
+  def self.search(search, page)
+  paginate :per_page => 5, :page => page,
+           :conditions => ['name like ?', "%#{search}%"],
+           :order => 'title'
+  end
   private
 # ensure that there are no line items referencing this product
 def ensure_not_referenced_by_any_line_item

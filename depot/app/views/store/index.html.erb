@@ -1,3 +1,10 @@
+<%= form_tag(products_path, :method => "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
 <% if notice %>
 <p id="notice" ><%= notice %></p>
 <% end %>
@@ -6,7 +13,7 @@
 <%= 'visit times:' %>
 <%= @counter %>
 
-<% @products.each do |product| %>
+<% @stores.each do |product| %>
 <div class="entry" >
 <h3><%= product.title %></h3>
 <%= image_tag(product.image_url) %>
@@ -18,3 +25,5 @@
 </div>
 </div>
 <% end %>
+
+<p><%= will_paginate @stores %></p>

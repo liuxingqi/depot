@@ -2,12 +2,16 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    # @products = Product.all
+       @products = Product.paginate :page=>params[:page], :order=>'created_at desc',
+                                 # :conditions => ['name like ?', '%#{params[:search]}%'], :order => 'title',
+                                 :per_page => 5
+    # @products = Product.search(params[:search], params[:page])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @products }
-    end
+  #   respond_to do |format|
+  #     format.html # index.html.erb
+  #     format.json { render json: @products }
+  #   end
   end
 
   # GET /products/1
@@ -41,8 +45,8 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(params[:product])
-    @comments= @product.comments.create(params[:comment])
-    
+    #@comments= @product.comments.create(params[:comment])
+
     respond_to do |format|
       if @product.save
         format.html { redirect_to product_path(@product), notice: 'Product was successfully created.' }
