@@ -3,10 +3,10 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     # @products = Product.all
-       @products = Product.paginate :page=>params[:page], :order=>'created_at desc',
-                                 # :conditions => ['name like ?', '%#{params[:search]}%'], :order => 'title',
-                                 :per_page => 5
-    # @products = Product.search(params[:search], params[:page])
+       # @products = Product.paginate :page=>params[:page], :order=>'created_at desc',
+       #                           :conditions => ['name like ?', '%#{params[:search]}%'], :order => 'title',
+       #                           :per_page => 5
+      @products = Product.search(params[:search], params[:page])
 
   #   respond_to do |format|
   #     format.html # index.html.erb
