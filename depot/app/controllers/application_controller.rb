@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 	session[:cart_id] = cart.id
 	cart
 	end
+    
 
 	def view_counter
         if session[:counter].nil?
