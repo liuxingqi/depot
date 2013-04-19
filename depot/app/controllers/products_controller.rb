@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  skip_before_filter :authorize, :only => [:index, :show]
   # GET /products
   # GET /products.json
   def index
@@ -18,7 +19,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-    @user=User.find(session[:user_id])
+    #@user=User.find(session[:user_id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }

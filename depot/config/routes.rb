@@ -22,7 +22,7 @@ Depot::Application.routes.draw do
     delete 'logout' => :destroy
   end
   
-    match "/signup" => "users#new"
+  match "/signup" => "users#new"
 
   resources :comments
   
