@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  skip_before_filter :authorize, :only => [:index, :show]
+  skip_before_filter :authorize, :only => [:index, :show, :destroy, :update]
   # GET /products
   # GET /products.json
   def index
@@ -79,7 +79,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product = Product.find(params[:id])
-    @comments= @product.comments.create(params[:id])
+    #@comments= @product.comments.create(params[:id])
     @product.destroy
 
     respond_to do |format|
