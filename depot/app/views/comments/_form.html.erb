@@ -1,0 +1,12 @@
+<%= form_for([@product, @product.comments.build]) do |f| %>
+
+  <div class="field">
+    <%= f.label :evaluate %><br />
+    <%= f.text_area :evaluate, :rows => '3' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

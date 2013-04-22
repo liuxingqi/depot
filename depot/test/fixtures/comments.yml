@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  evaluate: MyText
+  product_id: 1
+
+two:
+  evaluate: MyText
+  product_id: 1
