@@ -111,8 +111,13 @@
   margin-right: 2em;
 }
 
-#search {
-  float: right;
+
+#searchbox   {
+  float: center;
+}
+
+#submit {
+  float: center;
 }
 
 #banner {
@@ -212,3 +217,4 @@ margin-left: 4em;
 .depot_form div {
 margin: 0.5em 0;
 }
+

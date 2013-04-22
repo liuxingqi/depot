@@ -1,8 +1,7 @@
-<div id='search'>
+<div id='searchbox'>
 <%= form_tag(products_path, :method => "get") do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => nil %>
+  <%= text_field_tag 'search', params[:search], :placeholder => 'Enter search term...'%>
+  <%= submit_tag "Go", :name => nil, :id => 'submit' %>
 <% end %>
 </div>
 
