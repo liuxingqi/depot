@@ -14,8 +14,16 @@
    <div id="banner" >
     <%= image_tag("logo.png") %>
     <%= @page_title || "Pragmatic Bookshelf" %>
+    
    </div>
-
+<div id="log_status">
+    <% if session[:user_id] %>
+    <p> <%= link_to "Welcome! #{User.find(session[:user_id]).name}", :controller => 'users', :action => 'show', :id => session[:user_id] %></p>
+    <%= button_to 'Logout', logout_path, :method => :delete   %>
+    <% else %>
+      <%= link_to 'Login', login_path, :method => :new %>
+    <% end %>
+  </div>
 <div id="columns" >
 
 <div id="side" >
@@ -38,10 +46,6 @@
     <%= link_to 'Products', products_path %><br />
     <%= link_to 'Users',    users_path    %><br />
     <br />
-  <p>  <%= link_to "Welcome! #{User.find(session[:user_id]).name}", :controller => 'users', :action => 'show', :id => session[:user_id] %></p>
-    <%= button_to 'Logout', logout_path, :method => :delete   %>
-<% else %>
-    <%= link_to '[Login]', login_path, :method => :new %>
 <% end %>
 
 </div>
