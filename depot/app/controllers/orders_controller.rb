@@ -17,10 +17,11 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
-
+    # @cart = current_cart
+    # params[:product_id]
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @order }
+      format.json { render json: order_path(@order) }
     end
   end
 
@@ -45,13 +46,13 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(current_cart)
-
+    @cart=Cart.find(params[:id])
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         Notifier.order_received(@order).deliver
-        format.html { redirect_to store_url, notice: "Thank you for your order."}
+        format.html { redirect_to order_path(@order) , notice: "Thank you for your order."}
         format.xml { render xml: @order, status: :created, location: @order }
       else
         format.html { render action: "new" }

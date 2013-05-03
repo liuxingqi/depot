@@ -10,6 +10,5 @@ class StoreController < ApplicationController
     @stores = Product.search(params[:search], params[:page])
   	@counter=view_counter
   	@cart=current_cart
-
   end
 end

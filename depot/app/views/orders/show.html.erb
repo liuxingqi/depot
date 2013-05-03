@@ -1,6 +1,12 @@
-<!-- <p id="notice"><%= notice %></p> -->
 
+</p>
+<%= render @order.line_items %>
 <p>
+
+<b> Total price: </b>
+
+<%= @order.line_items.to_a.sum {|item| item.total_price} %>
+<p>	
   <b>Name:</b>
   <%= @order.name %>
 </p>
